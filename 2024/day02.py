@@ -111,11 +111,11 @@ def calculate_result(data: list[str]) -> tuple[int, int]:
 inputfile = Path('day02.txt')
 data = read_inputfile(inputfile)
 
-day1_result, day2_result = calculate_result(data)
+part1_result, part2_result = calculate_result(data)
 
-print('Day 1:', day1_result)
-if day1_result == 269:
+print('Day 1:', part1_result)
+if part1_result == 269:
     print('PASS')
-print('Day 2:', day2_result)
-if day2_result == 337:
+print('Day 2:', part2_result)
+if part2_result == 337:
     print('PASS')

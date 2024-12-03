@@ -88,12 +88,12 @@ inputfile = Path('day01.txt')
 data = read_inputfile(inputfile)
 
 left_list, right_list = parse_data(data)
-day1_result = calculate_result(left_list, right_list)
-day2_result = calculate_similarity(left_list, right_list)
+part1_result = calculate_result(left_list, right_list)
+part2_result = calculate_similarity(left_list, right_list)
 
-print('Day 1:', day1_result)
-if day1_result == 2970687:
+print('Day 1:', part1_result)
+if part1_result == 2970687:
     print('PASS')
-print('Day 2:', day2_result)
-if day2_result == 23963899:
+print('Day 2:', part2_result)
+if part2_result == 23963899:
     print('PASS')
