@@ -153,7 +153,6 @@ def find_antinodes(grid: list[str],
         # Generate all pairwise location combinations for this freqency
         pairs = list(itertools.combinations(locations, 2))
         for pair in pairs:
-            print('\nPair:', pair)
             (x1, y1), (x2, y2) = pair
             delta_x, delta_y = (x2-x1), (y2-y1)
             # Find exactly 2 antinodes for Part 1
