@@ -231,7 +231,7 @@ guard_directions = {'^': (0, -1),
                     }
 guard = list(guard_directions.keys())
 
-inputfile = 'day06.txt'
+inputfile = Path('day06.txt')
 data = read_inputfile(inputfile)
 part1_result, part2_result = run(data)
 
