@@ -35,7 +35,7 @@ example2 = """##########
     v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^"""
 example2 = example2.split()
 
-def read_inputfile(inputfile: Path) -> str:
+def read_inputfile(inputfile: Path) -> list[str]:
     """
     Reads a text file and returns its contents, with leading/trailing whitespace removed.
 
@@ -274,6 +274,6 @@ directions = {'<': (-1, 0),
 
 part1_result = run(data)
 
-print('Day 1:', part1_result)
+print('Part 1:', part1_result)
 if part1_result == 1463715:
     print('PASS')
