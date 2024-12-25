@@ -37,13 +37,15 @@ example = example.split()
 
 def read_inputfile(inputfile: Path) -> list[str]:
     """
-    Reads a text file and returns its contents, with leading/trailing whitespace removed.
+    Reads a text file and returns its contents as a list of strings, with leading/trailing 
+    whitespace removed from each string.
 
     Args:
         inputfile (Path): The path to the input file to be read.
 
     Returns:
-        str: A string representing the file contents, with leading/trailing whitespace removed. 
+        list[str]: A list of strings representing the file contents, with leading/trailing 
+            whitespace removed from each string. 
     """
     with open(inputfile, 'rt') as fin:
         data = fin.readlines()
