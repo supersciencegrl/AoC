@@ -178,7 +178,7 @@ def find_triangles(cliques: list[set]) -> list[tuple]:
 
     return triangles
 
-def run(data: list[str]) -> tuple(int, str):
+def run(data: list[str]) -> tuple[int, str]:
     """
     Processes a list of connections to find specific network patterns and generates a password.
 
