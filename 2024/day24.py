@@ -1,4 +1,4 @@
-from collections import deque
+from itertools import combinations
 from pathlib import Path
 
 example = """x00: 1
@@ -49,6 +49,27 @@ example = """x00: 1
     tgd XOR rvg -> z12
     tnw OR pbm -> gnj"""
 example = example.split('\n    ')
+
+example2 = """x00: 0
+    x01: 1
+    x02: 0
+    x03: 1
+    x04: 0
+    x05: 1
+    y00: 0
+    y01: 0
+    y02: 1
+    y03: 1
+    y04: 0
+    y05: 1
+
+    x00 AND y00 -> z05
+    x01 AND y01 -> z02
+    x02 AND y02 -> z01
+    x03 AND y03 -> z03
+    x04 AND y04 -> z04
+    x05 AND y05 -> z00"""
+example2 = example2.split('\n    ')
 
 def read_inputfile(inputfile: Path) -> list[str]:
     """
@@ -223,6 +244,41 @@ def calculate_result(gates):
 
     return decimal_result
 
+def generate_pairs(swap_system):
+    all_pairs = list(combinations(swap_system, 2))
+    unique_pair_sets = []
+
+    # Generate combinations of pairs
+    def backtrack(current_set, remaining_pairs, remaining_items):
+        if len(current_set) == 4:
+            sorted_set = tuple(sorted(current_set))
+            if sorted_set not in unique_pair_sets:
+                unique_pair_sets.append(sorted_set)
+            return
+    
+        for i, pair in enumerate(remaining_pairs):
+            # Don't reuse items
+            if not any([item in remaining_items for item in pair]):
+                continue
+            new_set = current_set + [pair]
+            new_remaining_pairs = remaining_pairs[i+1:]
+            new_remaining_items = remaining_items - set(pair)
+            backtrack(new_set, new_remaining_pairs, new_remaining_items)
+    
+    backtrack([], all_pairs, set(swap_system))
+
+    return unique_pair_sets
+
+def part2(gates):
+    gate_outputs = [gate['output'] for gate in gates]
+    # Lol I was trying to brute force it, but MemoryError so fast
+    possible_swap_systems = list(combinations(gate_outputs, 8))
+
+    for system in possible_swap_systems:
+        pairs = generate_pairs(system)
+    
+    return pairs
+
 def run(data):
     """
     Processes a list of logic circuit data to evaluate gate outputs and calculate a final result.
@@ -240,9 +296,9 @@ def run(data):
              start with 'z', after evaluation and processing.
     """
     inputs, gates = parse_data(data)
-    gates = evaluate_inputs(inputs, gates)
 
-    part1_result = calculate_result(gates)
+    gates_part1 = evaluate_inputs(inputs, gates)
+    part1_result = calculate_result(gates_part1)
 
     return part1_result
 
