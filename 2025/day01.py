@@ -28,12 +28,6 @@ def read_inputfile(inputfile: Path) -> list[str]:
     
     return [line.strip() for line in data]
 
-inputfile = Path('day01.txt')
-data = read_inputfile(inputfile)
-
-START = 50
-DIAL_MAX = 99
-
 def move_dial(start_pos: int, direction: str, steps: int) -> tuple[int, int]:
     """
     Move a 0–DIAL_MAX circular dial left or right by a number of steps.
@@ -122,6 +116,12 @@ def read_instructions(data: list[str]):
         zero_passed += times_passing_zero
 
     return zero_positions, zero_passed
+
+inputfile = Path('day01.txt')
+data = read_inputfile(inputfile)
+
+START = 50
+DIAL_MAX = 99
 
 part1_result, part2_result = read_instructions(data)
 
